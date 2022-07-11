@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funtion.prototype.call Function.prototyoe.apply y Funtion.prototype.bind!</title>
+</head>
+<body>
+    <a href="/ejercicios/">Go Back</a>
+    <p><em>Abre la consola!</em></p>
+
+    <ul>
+        <li><button class="call-to-acction">Aprender</button></li>
+        <li><button class="call-to-acction">Aprender Más</button></li>
+        <li><button class="call-to-acction">¡Nunca parar de aprender!</button></li>
+    </ul>
+
+    <script>
+        //Establece "this" usando "call"
+        function saludar() {
+            console.log(`Hola. Soy ${this.name} ${this.apellido}`);
+        }
+
+        const gus = {
+            name: "Gustavo",
+            apellido: "Mañan"
+        }
+
+        saludar.call(gus)
+        
+        //Establece "this" usando "call" y pasar argumentos a la función
+        function caminar(metros, direccion) {
+            console.log(`${this.name} camina ${metros} metros hacia ${direccion}.`);
+        }
+
+        caminar.call(gus, 1000, "Norte");
+
+        //Establece "this" usando "apply" y pasar argumentos a la función
+        const valores = [800, "Sureste"];
+        caminar.apply(gus, valores)
+
+        /*
+            Call - comas
+            Apply - arreglos
+        */
+
+        //Establece "this" en una nueva función usando "bind"
+        const hugo = {
+            name: "Hugo",
+            apellido: "Mañán Vergara"
+        }
+
+        const hugoSaluda = saludar.bind(hugo);
+        hugoSaluda();
+
+        const hugoCamina = caminar.bind(hugo, 2000);
+        hugoCamina("Norte");
+
+        //Cuándo es útil usar uno de estos métodos
+        const buttons = document.getElementsByClassName("call-to-acction");
+        // buttons.forEach(button => {
+        //     button.onclick = () => alert("Nunca pares de aprender!");
+        // });
+        Array.prototype.forEach.call(buttons, button => {
+            button.onclick = () => alert("Nunca pares de aprender!");
+        });// se llamo la funcion usando buttons como contexto, como el this. Y porque button tiene una propiedad (que es buttons.length) con eso le basta a array.forEach para operar
+    </script>
+</body>
+</html>

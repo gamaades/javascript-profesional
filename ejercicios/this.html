@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This</title>
+</head>
+<body>
+    <a href="/ejercicios/">Go Back</a>
+    <p><em>Abre la consola!</em></p>
+
+    <h1><code>this</code> se refiere a un objeto. Ese objeto es el que actualmente está ejecutando un pedazo de código</h1>
+    <script>
+        //this en el Scope Global
+        console.log(`this: ${this}`); //sale que es un objeto, y que ese objeto es window
+
+        //this en el Scope de una función
+        function whoIsThis() {
+            return this;
+        }
+
+        console.log(`whoIsThis(): ${whoIsThis()}`); //Vuelve a salir que this es un objeto de window
+        
+        //this en el Scope de una función en strict mode
+        function whoIsThisStrict() {
+            "use strict";
+            return this;
+        }
+
+        console.log(`whoIsThis(): ${whoIsThisStrict()}`);//En este caso sale lo siguiente: whoIsThis(): undefined. Esto aparece cuando usamos strict mode, el cual sirve para evitar algunos errores
+
+        //this en el contexto a una funcion de un objeto
+        const person = {
+            name: "Gus",
+            saludar: function(){
+                console.log(`Hola soy ${this.name}`);
+            }
+        }
+        person.saludar()
+    
+        //this cuando sacamos a una funcion de un objeto
+        const accion = person.saludar;
+        accion();
+
+        //this en el contexto de una "clase"
+        function Person(name) {// esto funciona como un constructor. Y resulta que toda las funciones tienen un valor de this. Lo que sucede es que ese valor de this es un objeto vacio, en otras palabras, this comienza haciendo esto (this={}). recordar, no se puede asignar this directamente, pero si puedes asignar una propiedad de this. 
+            this.name = name;
+        }
+
+        Person.prototype.saludar = function () {
+            console.log(`Me llamo ${this.name}`);
+        }
+
+        const norma = new Person("Norma");// En el contexto de objeto que fueron instanciados de una clase, this se va a referir a la instancia de este objeto. No se va a referir a person ni a person.prototype se va a referir a Norma. Norma es el objeto que esta ejecutando a saludar. Y cuando asignamos los valores asi, de this.name es igual a un valor, lo estamos haciendo sobre la instancia, no sobre el objeto prototipal.
+        norma.saludar();
+    </script>
+</body>
+</html>

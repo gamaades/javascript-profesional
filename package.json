@@ -19,6 +19,6 @@
   "homepage": "https://github.com/gamaades/javascript-profesional#readme",
   "description": "",
   "devDependencies": {
-    "live-server": "^1.2.2"
+    "live-server": "^1.1.0"
   }
 }

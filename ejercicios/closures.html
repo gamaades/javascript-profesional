@@ -13,28 +13,66 @@
       <p><em>Abre la consola!</em></p>
     </header>
     <script>
-        //Clousers
-        //printColor
-        //este tipo de funcion se llama IIFE (Immediately invoked function expression: y son funciones que se ejecutan tan pronto como se definen.)
-        (function() {
-            let color = "Verde";
+      //Clousers
+      //printColor
+      //este tipo de funcion se llama IIFE (Immediately invoked function expression: y son funciones que se ejecutan tan pronto como se definen.)
+      // (function() {
+      //   let color = "Verde";
+      //   function printColor() {
+      //     console.log(color);
+      //   }
+        
+      //   printColor();
+      // })();
+      
+      // //Funciones que regresan funciones
+      // function makeColorPrinter(color) {
+      //   let colorMessage = 'The color es ' + color;
+        
+      //   return function () {
+      //     console.log(colorMessage);
+      //   }
+      // }
+      
+      // let greenColorPrinter =  makeColorPrinter('Verde');
+      // console.log(greenColorPrinter());
 
-            function printColor(color) {
-                console.log(color);
-            }
+      //variables privadas
+      // const counter = {
+      //   count : 3
+      // }
+      // console.log(counter.count);
 
-        printColor();})();
+      function makeCounter(n) {
+        let count = n;
 
-        //Funciones que regresan funciones
-        function makeColorPrinter(color) {
-            let colorMessage = 'The color es ' + color;
-
-            return function () {
-                console.log(colorMessage);
-            }
+        return{
+          increase: function () {
+            count = count + 1;
+          },
+          decrease: function () {
+            count = count -1;
+          },
+          getCount: function () {
+            return count;
+          }
         }
+      }
 
-        let greenColorPrinter =  makeColorPrinter('Verde');
+      let counter = makeCounter(7);
+
+      console.log("The Count is: ", counter.getCount());
+      counter.increase();
+      console.log("The Count is: ", counter.getCount());
+      counter.decrease();
+      counter.decrease();
+      counter.decrease();
+      counter.decrease();
+      console.log("The Count is: ", counter.getCount());
+      //count.count= 0;
+      console.log("The Count is: ", counter.getCount());
+      //Esta es una variable privada. El valor no se puede leer directamente o modificar directamente, se tiene que hacer a través de una función que está en el objeto que se regresó. Eso es Closure. es una técnica muy poderosa que nos permite establecer valores ya predefinidos y crear nuevas funciones para trabajar sobre estos valores. Permite encapsular escondidamente, secretamente estos valores y evitar problemas. Y, además, es una de las técnicas más utilizadas en el desarrollo con JavaScript.
+
     </script>
   </body>
 </html>

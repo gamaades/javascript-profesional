@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>herencia Prototipal</title>
+</head>
+<body>
+    <a href="/ejercicios/">Go Back</a>
+    <p><em>Abre la consola!</em></p>
+    <p><code>someObject.prototype</code> es un objeto donde definimos el prototipo de las instancias de <code>SomeObject</code>. Es decir, las instancias de <code>SomeObject</code> van a "heredar" de <code>SomeObject.prototype</code>.</p>
+    <p><code>SomeObject.[[Prototype]]</code> es el prototipo de <code>SomeObject</code>. Es decir, <code>SomeObject</code> "hereda de <code>Some.Object.prototype</code></p>
+
+    <script>
+        function Hero(name) {
+            this.name = name;
+        }
+
+        Hero.prototype.saludar = function () {
+            console.log(`Hola soy ${this.name}`)
+        }
+
+        const luffi = new Hero("Luffi");
+
+        // Propiedades de la instancia
+        console.log("Nombre: ", luffi.name);
+
+        // Propiedades de la "Clase"
+        console.log("Saludar: ", luffi.saludar);
+
+        // Propiedades heredadas ej: toString
+        console.log("toString: ", luffi.toString);
+
+        // hasOwnProperty (de donde sale tostring o esto?) esto sirve para inspeccionar si algo le pertenece directamente a un objeto o si lo tomo prestado a través de herencia
+        console.log("luffi.hasOwnProperty(): ", luffi.hasOwnProperty("name"));//true
+        console.log("luffi.hasOwnProperty(): ", luffi.hasOwnProperty("saludar"));//false ya que esto no es de luffi
+
+        // inspeccionemos el prototipo del Luffi
+        // inspeccionemos el prototipo del Hero
+        // inspeccionemos el prototipo del Object
+    </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype</title>
+</head>
+<body>
+    <a href="/ejercicios/">Go Back</a>
+    <p><em>Abre la consola!</em></p>
+
+    <script>
+        //Un objeto común y corriente
+        // const luffi = {
+        //     name: "Luffi"
+        // }
+
+        // luffi.saludar = function () {
+        //     console.log(`Hola soy ${this.name}`);
+        // }
+
+        // luffi.saludar();
+
+        // const zoro = {
+        //     name: "Zoro"
+        // }
+
+        // zoro.saludar = function () {
+        //     console.log(`Hola soy ${this.name}`);
+        // }
+
+        // zoro.saludar();
+
+        //Seamos un poco más eficiente 
+        // function Hero (name) {
+        //     const hero = {
+        //         name: name
+        //     };
+
+        //     hero.saludar = function () {
+        //         console.log(`Hola soy ${this.name}`);
+        //     }
+
+        //     return hero;
+        // }
+        // const luffi = Hero("Luffi");
+        // luffi.saludar();
+        
+        // const zoro = Hero("Zoro");
+        // zoro.saludar();
+
+        // const ussop = Hero("Ussop");
+        // ussop.saludar();
+
+        //Aun podemos mejorar más y evitar tener que crear la misma funcion cada vez
+        // const heroMethods = {
+        //     saludar: function () {
+        //         console.log(`Me llamo ${this.name}`);
+        //     }
+        // }
+
+        // function Hero (name) {
+        //     const hero = {
+        //         name: name
+        //     }
+
+        //     hero.saludar = heroMethods.saludar;
+            
+        //     return hero;
+        // }
+        // const luffi = Hero("Luffi");
+        // luffi.saludar();
+        
+        // const zoro = Hero("Zoro");
+        // zoro.saludar();
+
+        // const ussop = Hero("Ussop");
+        // ussop.saludar();
+
+        //object.create
+        //const nuevoObjeto = Object.create(objeto);
+        // const heroMethods = {
+        //     saludar: function () {
+        //         console.log(`Soy superheroe ${this.name}`);
+        //     }
+        // }
+
+        // function Hero (name) {
+        //     const hero = Object.create(heroMethods)
+        //     hero.name = name;
+            
+        //     return hero;
+        // }
+        // const luffi = Hero("Luffi");
+        // luffi.saludar();
+        
+        // const zoro = Hero("Zoro");
+        // zoro.saludar();
+
+        // const ussop = Hero("Ussop");
+        // ussop.saludar();
+
+        //los métodos de hero dentro de hero
+        // const heroMethods = {
+        //     saludar: function () {
+        //         console.log(`Soy superheroe ${this.name}`);
+        //     }
+        // };
+
+        // function Hero (name) {
+        //     const hero = Object.create(Hero.prototype);
+        //     hero.name = name;
+            
+        //     return hero;
+        // }
+
+        // Hero.prototype.saludar = function () {
+        //     console.log(`Soy superheroe :D ${this.name}`);
+        // }
+
+
+        // const luffi = Hero("Luffi");
+        // luffi.saludar();
+        
+        // const zoro = Hero("Zoro");
+        // zoro.saludar();
+
+        // const ussop = Hero("Ussop");
+        // ussop.saludar();
+
+        //new es un atajo (azucar sintactica) para llevar hero.prototype al objeto
+        //tenemos un constructor donde asginamos this.name, tenemos su prototype definido y estamos usando new.
+        function Hero (name) {
+            // this = Object.create(Hero.prototype);
+            this.name = name;
+            
+            return this;
+        }
+
+        Hero.prototype.saludar = function () {
+            console.log(`New: ${this.name}`);
+        }
+
+
+        const luffi = new Hero("Luffi");
+        luffi.saludar();
+        
+        const zoro = new Hero("Zoro");
+        zoro.saludar();
+
+        const ussop = new Hero("Ussop");
+        ussop.saludar();
+    </script>
+
+</body>
+</html>
