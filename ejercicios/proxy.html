@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy</title>
+</head>
+<body>
+    <a href="/ejercicios/">Go Back!</a>
+    <p>Abre la consola</p>
+
+    <script src="https://unpkg.com/fast-levenshtein@2.0.6/levenshtein.js"></script>
+    <script>
+        // Proxy es parecido a getter y setters
+
+        // Proxy nos devuelve un objeto, y proxy se crea usando la clase de proxy, asi que hay que instanciarla y esta va a recibir dos argumentos, esos dos argumentos es el target y el handler. El target es el objeto que queremos interceptar. es decir, si antes de que una llamada llegue a este objeto lo queremos interceptar. y nuestro target sera un arreglo. ** El llamado se hace con P **
+        const target = {
+            red: "Rojo",
+            green: "Verde",
+            blue: "Azul"
+        }
+
+        const handler = {
+            get(obj, prop){
+                //debugger;
+                if (prop in obj) {
+                    return obj[prop]
+                }
+
+                const suggestion = Object.keys(obj).find(key => {
+                    return Levenshtein.get(key, prop) <= 3
+                })
+
+                if (suggestion) {
+                    console.log(`${prop} no se encontró. Quisiste decir ${suggestion}?`);
+                }
+
+                return obj[prop];
+            }
+        }
+
+        const p = new Proxy(target, handler);
+    </script>
+</body>
+</html>
